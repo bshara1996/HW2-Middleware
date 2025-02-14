@@ -26,3 +26,6 @@ GET /public
 דרישות:
 - יש להחיל Middleware רישום על כל המסלולים.
 - יש להחיל Middleware הרשאה רק על המסלול /admin
+## Students
+- Bshara Karkaby [49-2]
+- Moner Makhouly [49-2]
