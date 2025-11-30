@@ -1,31 +1,53 @@
-# HM2 - Middleware
 
-צרו שרת אקספרס ש:משתמש ב-middleware לרישום בקשות (כמו logger מהמשימה הקודמת).
+## 📋 Task Requirements
 
-- התוכנה חייבת לתעד לקונסולה את שיטת הבקשה (GET), את כתובת האתר של הבקשה ואת התאריך והשעה הנוכחית.
+A Node.js Express server that implements logging and authentication middleware.
 
-מיישם ב-middleware לבדיקת הרשאות.
+Create an Express server that:
+1.  **Uses middleware for request logging (Logger):**
+    - The software must log to the console: Request Method (GET), Request URL, and current Date & Time.
+2.  **Implements middleware for permission checking (Auth):**
+    - The software must check if the parameter `user=admin` is passed in the request (Query Parameters).
+    - If the parameter is missing or not equal to `admin`, return a 403 error with the message "Access Denied".
+    - If `user=admin`, the request proceeds.
+3.  **Implements several routes:**
+    - `GET /`: Returns "Welcome to the homepage!".
+    - `GET /admin`: Available only to authorized users (`user=admin`). Returns "Welcome to the admin page!".
+    - `GET /public`: Available to everyone. Returns "This is a public page.".
 
-- התוכנה חייבת לבדוק אם הפרמטר user=admin מועבר בבקשה (תשתמשו ב-query parameters).
-- אם הפרמטר חסר או אינו שווה ל-admin, החזר שגיאה 403 עם ההודעה "Access Denied". 
-- אם הפרמטר user=admin, הבקשה מועברת.
- 
-מיישם מספר מסלולים:
-GET /
-מחזיר את הטקסט: "ברוכים הבאים לדף הבית!".
+**Requirements:**
+- Apply Logging Middleware to **all** routes.
+- Apply Authorization Middleware **only** to the `/admin` route.
 
+## 🚀 How to Run
 
-GET /admin
+1.  Install dependencies:
+    ```bash
+    npm install
+    ```
+2.  Start the server:
+    ```bash
+    node app.js
+    ```
+3.  Test the routes:
+    - `http://localhost:3000/`
+    - `http://localhost:3000/public`
+    - `http://localhost:3000/admin` (Should fail)
+    - `http://localhost:3000/admin?user=admin` (Should succeed)
 
-זמין רק למשתמשים מורשים (user=admin). מחזיר את הטקסט: "ברוכים הבאים לעמוד הניהול!".
+## 💡 Solution Approach
 
-GET /public
+The solution uses:
+- **Express.js** framework.
+- **Logger Middleware**: A function that runs on every request to log details.
+- **Auth Middleware**: A function that checks `req.query.user` before allowing access to protected routes.
+- **Route Handlers**: Specific functions for each path.
 
-זמין לכולם. מחזירה את הטקסט: "זהו דף ציבורי.".
+## 👥 Students
 
-דרישות:
-- יש להחיל Middleware רישום על כל המסלולים.
-- יש להחיל Middleware הרשאה רק על המסלול /admin
-## Students
 - Bshara Karkaby [49-2]
 - Moner Makhouly [49-2]
+
+---
+
+**Happy coding!** 💻✨
